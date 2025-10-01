@@ -205,9 +205,9 @@ resource embeddingModelDeployment 'Microsoft.CognitiveServices/accounts/deployme
 // SECURITY ROLE ASSIGNMENTS
 // ===============================================
 
-// Cognitive Services User
+// Cognitive Services User for Search Service
 resource CogsUserSPRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(subscription().id, resourceGroup().id, searchService.name, 'a97b65f3-24c7-4388-baec-2e87135dc908')
+  name: guid(subscription().id, resourceGroup().id, searchService.name, 'sp-cogs-user', 'a97b65f3-24c7-4388-baec-2e87135dc908')
   properties: {
     principalId: searchService.identity.principalId
     principalType: 'ServicePrincipal'
@@ -315,9 +315,9 @@ resource userOpenAiUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2
   }
 }
 
-// Cognitive Services User
+// Cognitive Services User for Lab User
 resource CogsUserRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(subscription().id, resourceGroup().id, searchService.name, 'a97b65f3-24c7-4388-baec-2e87135dc908')
+  name: guid(subscription().id, resourceGroup().id, labUserObjectId, 'user-cogs-user', 'a97b65f3-24c7-4388-baec-2e87135dc908')
   scope: searchService
   properties: {
     principalId: labUserObjectId
